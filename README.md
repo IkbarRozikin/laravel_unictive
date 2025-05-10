@@ -1,64 +1,151 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# **Aplikasi CRUD User dengan Laravel**
 
-## About Laravel
+Aplikasi ini dibangun menggunakan Laravel untuk mengelola data pengguna (User) dengan relasi satu ke banyak (one-to-many) ke hobi (Hobbies). Aplikasi ini mencakup sistem autentikasi baik untuk UI berbasis web (Blade) maupun API dengan menggunakan JWT (JSON Web Token).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## **Fitur**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **CRUD User**:
+  - Menambah, mengubah, dan menghapus pengguna beserta daftar hobinya.
+- **Relasi One-to-Many**:
+  - Setiap pengguna dapat memiliki banyak hobi.
+- **Autentikasi**:
+  - Autentikasi berbasis sesi untuk aplikasi Web.
+  - Autentikasi berbasis JWT untuk API.
+- **Blade UI**:
+  - Form input dan tabel untuk menampilkan daftar pengguna dan hobinya.
+- **API Endpoints**:
+  - Endpoints API yang dilindungi JWT untuk operasi CRUD.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## **Teknologi yang Digunakan**
+- Laravel 8.x
+- Blade Templating Engine
+- JWT Authentication untuk API
+- MySQL atau SQLite untuk database
 
-## Learning Laravel
+## **Persyaratan Sistem**
+- PHP 8.x
+- Composer
+- Database MySQL atau SQLite
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## **Instalasi**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **1. Clone Proyek**
 
-## Laravel Sponsors
+Clone repositori ini ke dalam direktori lokal:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+git clone https://github.com/username/laravel-unictive.git
+cd laravel-unictive
+```
 
-### Premium Partners
+### **2. Instal Dependensi**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Install dependensi dengan Composer:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **3. Buat File `.env`**
 
-## Code of Conduct
+Salin file `.env.example` dan beri nama `.env`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+### **4. Set Konfigurasi Database**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Ubah konfigurasi database di file `.env` sesuai dengan pengaturan kamu:
 
-## License
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### **5. Generate Kunci Aplikasi**
+
+Generate aplikasi key Laravel:
+
+```bash
+php artisan key:generate
+```
+
+### **6. Jalankan Migration**
+
+Jalankan migration untuk membuat tabel yang diperlukan di database:
+
+```bash
+php artisan migrate
+```
+
+### **7. Instal JWT Authentication**
+
+Instal package `tymon/jwt-auth`:
+
+```bash
+composer require tymon/jwt-auth
+```
+
+Kemudian, publish konfigurasi JWT:
+
+```bash
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+```
+
+### **8. Set Konfigurasi JWT**
+
+Buka file `.env` dan tambahkan key JWT:
+
+```env
+JWT_SECRET=generate
+```
+
+Generate JWT secret key:
+
+```bash
+php artisan jwt:secret
+```
+
+### **9. Seed Data (Opsional)**
+
+Jika kamu ingin menambahkan data pengguna awal untuk uji coba, jalankan seeder:
+
+```bash
+php artisan db:seed
+```
+
+---
+
+## **Rute Aplikasi**
+
+### **Web Routes (Blade UI)**
+
+- `GET /users` → Menampilkan daftar pengguna.
+- `GET /users/create` → Formulir untuk menambahkan pengguna.
+- `POST /users` → Menambahkan pengguna baru.
+- `GET /users/{id}/edit` → Formulir untuk mengedit pengguna.
+- `PUT /users/{id}` → Memperbarui data pengguna.
+- `DELETE /users/{id}` → Menghapus pengguna.
+
+### **API Routes**
+
+**Authentication:**
+- `POST /api/login` → Login dan mendapatkan JWT token.
+- `POST /api/register` → Mendaftar pengguna baru.
+
+**CRUD Users:**
+- `GET /api/users` → Mendapatkan daftar pengguna.
+- `POST /api/users` → Menambahkan pengguna baru.
+- `GET /api/users/{id}` → Mendapatkan data pengguna.
+- `PUT /api/users/{id}` → Memperbarui data pengguna.
+- `DELETE /api/users/{id}` → Menghapus pengguna.
+
+Semua endpoint API membutuhkan **JWT Authorization** di header `Authorization: Bearer {TOKEN}`.
+
+---

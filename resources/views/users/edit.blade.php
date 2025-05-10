@@ -38,9 +38,9 @@
         <div class="mb-3">
             <label class="form-label">Hobi</label>
             <div id="hobi-container">
-                @foreach($user->hobbies as $hobi)
+                @foreach($user->hobbies ?? [] as $hobi)
                     <div class="input-group hobi-group">
-                        <input type="text" name="hobbies[]" class="form-control" value="{{ $hobi->nama }}">
+                        <input type="text" name="hobbies[]" class="form-control" value="{{ $hobi->name }}">
                         <button type="button" class="btn btn-danger remove-hobi">Hapus</button>
                     </div>
                 @endforeach
