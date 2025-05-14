@@ -6,11 +6,11 @@ use App\Http\Controllers\Web\UserClientController;
 use App\Http\Controllers\Web\AuthClientController;
 
 // Auth
-Route::get('/login', [AuthClientController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthClientController::class, 'login']);
+Route::get('/', [AuthClientController::class, 'showLoginForm'])->name('login');
+Route::post('/', [AuthClientController::class, 'login']);
 Route::get('/register', [AuthClientController::class, 'showRegisterForm']);
 Route::post('/register', [AuthClientController::class, 'register']);
-Route::post('/logout', [AuthClientController::class, 'logout'])->name('logout');
+// Route::post('/logout', [AuthClientController::class, 'logout'])->name('logout');
 
 // Dashboard User (protected)
 Route::middleware(['auth'])->group(function () {
